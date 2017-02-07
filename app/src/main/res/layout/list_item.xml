@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="278dp"
+        android:layout_height="45dp"
+        android:id="@+id/textViewId"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="278dp"
+        android:layout_height="45dp"
+        android:id="@+id/textViewNombre"
+        android:layout_below="@+id/textViewId"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageView"
+        android:layout_weight="0.12"
+        android:layout_below="@+id/textViewId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="TextViewDescripcion"
+        android:layout_width="278dp"
+        android:layout_height="45dp"
+        android:id="@+id/textViewDescripcion"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
