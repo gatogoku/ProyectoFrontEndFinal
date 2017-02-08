@@ -82,36 +82,6 @@ public class AdapterBase extends BaseAdapter {
 
 
 
-  /*  public void rellenarListView() {
-        // Hacemos la consulta y obtenemos el cursor
-        DbAdapter db = new DbAdapter(activity);
-        Cursor cursor = db.obtenerTareas();
-        // que apunta a los datos
-
-        // Decimos qué campos queremos sacar
-        String[] campos = new String[] {"_id","nombre","descripcion","direccion"};
-
-        // Decimos dónde cargaremos los datos en cada item de la lista
-        int[] dondeMostrarCampos = new int[] {R.id.textViewId, R.id.textViewNombre,R.id.textViewDescripcion };
-
-        // Crea un adaptador para poder mostrar los datos en el ListView.
-        SimpleAdapter tareas = new SimpleAdapter(activity,null,R.id.textViewId,campos,dondeMostrarCampos);
-
-        // Asigna el adaptador al ListView.
-        ListView listaDatos = (ListView) activity.findViewById(R.id.lista);
-        listaDatos.setAdapter(tareas);
-
-        // Le asociamos un listener para saber cuál clickamos
-        listaDatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                // 	Sacamos el registro de la posición que han seleccionado (arg2)
-                Cursor elementoSeleccionado = (Cursor) arg0.getItemAtPosition(arg2);
-            }
-        });
-
-
-    }*/
 
 
   public   void rellenarListView() {
