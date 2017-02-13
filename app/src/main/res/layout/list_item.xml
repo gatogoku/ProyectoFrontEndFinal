@@ -9,21 +9,12 @@
     <TextView
         android:text="TextView"
         android:layout_width="278dp"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:id="@+id/textViewId"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:visibility="invisible"/>
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="278dp"
-        android:layout_height="45dp"
-        android:id="@+id/textViewNombre"
-        android:layout_below="@+id/textViewId"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="106dp"
@@ -38,9 +29,28 @@
     <TextView
         android:text="TextViewDescripcion"
         android:layout_width="278dp"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:id="@+id/textViewDescripcion"
         android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="TextView"
+        android:visibility="invisible"
+        android:layout_width="278dp"
+        android:layout_height="30dp"
+        android:id="@+id/textViewNombre"
+        android:layout_below="@+id/textViewId"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="TextViewDireccion"
+        android:layout_width="278dp"
+        android:layout_height="40dp"
+        android:id="@+id/textViewDireccion"
+        android:layout_below="@+id/textViewNombre"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

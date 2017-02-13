@@ -16,7 +16,7 @@ import android.util.Log;
  * @author pello xabier altadill
  *
  */
-class SQLiteHelper extends SQLiteOpenHelper {
+public class SQLiteHelper extends SQLiteOpenHelper {
 
     public static final String NOMBRE_BD = "DELEGACIONES.db";
     public static final int VERSION_BD = 4;
@@ -32,7 +32,7 @@ class SQLiteHelper extends SQLiteOpenHelper {
      * Le pasa el contexto, que se refiere al activity actual
      * @param contexto
      */
-    SQLiteHelper(Context contexto) {
+    public SQLiteHelper(Context contexto) {
         super(contexto, NOMBRE_BD, null, VERSION_BD);
     }
 

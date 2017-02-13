@@ -15,7 +15,7 @@ public class Delegacion {
 	private String nombre;
 	private String description;
 	private String direccion;
-	private Set<Ciudad> tasks = new HashSet<Ciudad>();
+	private Ciudad ciudad;
 
 	/**
 	 * default constructor
@@ -55,13 +55,7 @@ public class Delegacion {
 		this.direccion = direccion;
 	}
 
-	public Set<Ciudad> getTasks() {
-		return tasks;
-	}
 
-	public void setTasks(Set<Ciudad> tasks) {
-		this.tasks = tasks;
-	}
 
 	public Delegacion(int id, String nombre, String description, String direccion) {
 		super();
