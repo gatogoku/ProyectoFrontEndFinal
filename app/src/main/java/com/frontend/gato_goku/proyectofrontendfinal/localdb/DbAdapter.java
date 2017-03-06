@@ -15,7 +15,7 @@ import com.frontend.gato_goku.proyectofrontendfinal.models.Delegacion;
 
 /**
  * DBAdapter
- * Esta es una clase intermediaria entre nuestro Activity y
+ * Esta es una delegacion intermediaria entre nuestro Activity y
  * la BBDD. Aquí meteremos todas las operaciones CRUD sobre
  * los datos
  * @author Pello Altadill
@@ -34,8 +34,8 @@ public class DbAdapter {
 
     /**
      * DbAdapter
-     * Constructor de la clase
-     * @param contexto Será la activity que usa esta clase
+     * Constructor de la delegacion
+     * @param contexto Será la activity que usa esta delegacion
      */
     public DbAdapter(Context contexto) {
         this.contexto = contexto;
@@ -46,11 +46,11 @@ public class DbAdapter {
      * open
      * Usa el SqLiteHelper para encargase de abrir la conexión.
      * El SqLiteHelper lo primero que hará es crear la BD si no existía.
-     * @return Devuelve un objeto de clase SQLiteDatabase para gestionar la BD
+     * @return Devuelve un objeto de delegacion SQLiteDatabase para gestionar la BD
      * @throws SQLException
      */
     public SQLiteDatabase open() throws SQLException {
-        // Crea un objeto asistente de base de datos de clase SqLiteHelper.
+        // Crea un objeto asistente de base de datos de delegacion SqLiteHelper.
         dbHelper = new SQLiteHelper(contexto);
 
         // Abre la base de datos en modo escritura (lectura permitida).
@@ -71,20 +71,20 @@ public class DbAdapter {
     }
 
     /**
-     * insertarTarea
+     * insertarDelegacion
      * Inserta un registro con los campos nombre y cuerpo en la base de datos.
      *
      * @param
      * @return Devuelve el número de registro insertado 0 -1 en caso de error
      */
-    public long insertarTarea(Delegacion clase) {
+    public long insertarDelegacion(Delegacion delegacion) {
         // Creamos un registro
         ContentValues registro = new ContentValues();
 
         // Agrega los datos.
-        registro.put("nombre", clase.getNombre());
-        registro.put("descripcion", clase.getDescription());
-       // registro.put("imagen", clase.getImagen());
+        registro.put("nombre", delegacion.getNombre());
+        registro.put("descripcion", delegacion.getDescripcion());
+       // registro.put("imagen", delegacion.getImagen());
 
 
         // Inserta el registro y devuelve el resultado.
@@ -92,38 +92,38 @@ public class DbAdapter {
     }
 
     /**
-     * borrarTarea
+     * borrarDelegacion
      * Borra el registro que tiene el id especificado.
      *
      * @param idRegistro id del registro a borrar
      * @return Devuelve el nº de registros afectados.
      */
-    public int borrarTarea(long idRegistro) {
+    public int borrarDelegacion(long idRegistro) {
         return db.delete("DELEGACION",  "_id = "
                 + idRegistro, null);
     }
 
     /**
-     * obtenerTareas
+     * obtenerDelegaciones
      * Obtiene todos los registros de la tabla todo.
      *
      * @return Cursor Devuelve un cursor con los registros obtenidos.
      */
-    public Cursor obtenerTareas() {
-      return db.query("DELEGACION", new String[] {"_id","nombre","descripcion","direccion"}, null, null, null, null, null);
+    public Cursor obtenerDelegaciones() {
+      return db.query("DELEGACION", new String[]  { "_id","nombre","descripcion","direccion","id_backend","is_read"}, null, null, null, null, null);
      //  return db.rawQuery("select _id,nombre,descripcion,direccion from DELEGACION",null);
     }
 
     /**
-     * obtenerTarea
+     * obtenerDelegacion
      * Obtiene el registro que tiene el id especificado.
      *
      * @param idRegistro id del registro que se quiere obtener.
      * @return Cursor un cursor con el registro obtenido.
      * @throws SQLException
      */
-    public Cursor obtenerTarea (long idRegistro) throws SQLException {
-        Cursor registro = db.query(true, "DELEGACION",new String[] {"_id","nombre","descripcion","direccion"},
+    public Cursor obtenerDelegacion(long idRegistro) throws SQLException {
+        Cursor registro = db.query(true, "DELEGACION",new String[]  { "_id","nombre","descripcion","direccion","id_backend","is_read"},
                 "_id =" + idRegistro, null, null, null, null, null);
 
         // Si lo ha encontrado, apunta al inicio del cursor.
@@ -134,39 +134,25 @@ public class DbAdapter {
     }
 
     /**
-     * actualizarTarea
+     * actualizarDelegacion
      * Hace un UPDATE de los valores del registro cuyo id es idRegistro.
      *
      * @param  idRegistro id del registro que se quiere modificar.
      * @param
      * @return int cantidad registros han sido afectados.
      */
-    public int actualizarTarea(long idRegistro, Delegacion clase) {
+    public int actualizarDelegacion(long idRegistro, Delegacion delegacion) {
         // Creamos un registro
         ContentValues registro = new ContentValues();
 
         // Agrega los datos.
-        registro.put("nombre", clase.getNombre());
-        registro.put("descripcion", clase.getDescription());
-      //  registro.put("imagen", clase.getImagen());
+        registro.put("nombre", delegacion.getNombre());
+        registro.put("descripcion", delegacion.getDescripcion());
+      //  registro.put("imagen", delegacion.getImagen());
         // Inserta el registro y devuelve el resultado.
         return db.update("to", registro,
                 "_id=" + idRegistro, null);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * obtenerUltimaTareaBackend
      * Obtiene el último registro descargado del servidor
@@ -174,9 +160,9 @@ public class DbAdapter {
      * @return último id recibido del servidor
      * @throws SQLException
      */
-    public Cursor obtenerUltimaTareaLocal() throws SQLException {
+    public Cursor obtenerDelegacionLocal() throws SQLException {
         int result = 0;
-        Cursor registro = db.query(true, "tasks",new String[] { "_id","task","id_backend","is_read"},
+        Cursor registro = db.query(true, "tasks",new String[] { "_id","nombre","descripcion","direccion","id_backend","is_read"},
                 "id_backend = 0"  , null, null, null, null, null);
         // Si lo ha encontrado, apunta al inicio del cursor.
         if (registro != null) {
@@ -192,7 +178,7 @@ public class DbAdapter {
         registro.put("id_backend", -1);
 
         // Inserta el registro y devuelve el resultado.
-        return db.update("tasks", registro, "id_backend=0", null);
+        return db.update("DELEGACION", registro, "id_backend=0", null);
     }
     /**
      * obtenerUltimaTareaBackend
@@ -203,7 +189,7 @@ public class DbAdapter {
      */
     public Cursor obtenerUltimaTareaBackend () throws SQLException {
         int result = 0;
-        Cursor registro = db.query(true, "tasks",new String[] { "_id","task","id_backend","is_read"},
+        Cursor registro = db.query(true, "DELEGACION",new String[]  { "_id","nombre","descripcion","direccion","id_backend","is_read"},
                 null, null, null, null, "id_backend DESC"," 1");
         // Si lo ha encontrado, apunta al inicio del cursor.
         if (registro != null) {
@@ -213,39 +199,24 @@ public class DbAdapter {
         return registro;
     }
     /**
-     * actualizarTarea
+     * actualizarDelegacion
      * Hace un UPDATE de los valores del registro cuyo id es idRegistro.
      *
      * @param  idRegistro id del registro que se quiere modificar.
      * @param  task
      * @return int cantidad registros han sido afectados.
      */
-    public int actualizarTarea(long idRegistro, String task) {
+    public int actualizarDelegacion(long idRegistro, String task) {
         // Creamos un registro
         ContentValues registro = new ContentValues();
 
         // Agrega los datos.
-        registro.put("task", task);
+        registro.put("DELEGACION", task);
 
         // Inserta el registro y devuelve el resultado.
-        return db.update("tasks", registro,
+        return db.update("DELEGACION", registro,
                 "_id=" + idRegistro, null);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -1,24 +1,21 @@
 package com.frontend.gato_goku.proyectofrontendfinal.models;
 
-/**
- * Represents a Task.
- * 
- * @author Eugenia Pérez Martínez
- *
- */
+
 public class Ciudad {
 
 	private int id;
 	private String nombre;
 	private String cpostal;
-	private Delegacion delegacion;
-private int idProvincia;
-	
-	/**
-	 * default constructor
-	 */
-	public Ciudad () {
-		
+	private int idProvincia;
+
+	@Override
+	public String toString() {
+		return "Ciudad [id=" + id + ", nombre=" + nombre + ", cpostal=" + cpostal + ", idProvincia=" + idProvincia
+				+ ", delegaciones= ";
+	}
+
+	public Ciudad() {
+
 	}
 
 	public int getId() {
@@ -45,14 +42,6 @@ private int idProvincia;
 		this.cpostal = cpostal;
 	}
 
-	public Delegacion getDelegacion() {
-		return delegacion;
-	}
-
-	public void setDelegacion(Delegacion delegacion) {
-		this.delegacion = delegacion;
-	}
-
 	public int getIdProvincia() {
 		return idProvincia;
 	}
@@ -61,23 +50,11 @@ private int idProvincia;
 		this.idProvincia = idProvincia;
 	}
 
-	public Ciudad(int id, String nombre, String cpostal, Delegacion delegacion, int idProvincia) {
-		super();
+	public Ciudad(int id, String nombre, String cpostal, int idProvincia) {
 		this.id = id;
 		this.nombre = nombre;
 		this.cpostal = cpostal;
-		this.delegacion = delegacion;
 		this.idProvincia = idProvincia;
 	}
-	
-	/**
-	 * @param id
-	 * @param name
-	 * @param description
-	 * @param user
-	 */
-
-
-	
 
 }

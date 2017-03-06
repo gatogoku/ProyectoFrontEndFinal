@@ -22,8 +22,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final int VERSION_BD = 4;
     public static final String SQLCREAR = "create table DELEGACION "+
             " (_id integer primary key autoincrement, " +
-            " nombre text not null," + " descripcion text not null," +  " direccion text); " +
-            "insert into DELEGACION (nombre,descripcion,direccion) values('TITULO','DESCRIPCION-SQL','direccion');";
+            " nombre text not null," + " descripcion text not null," +  " direccion text, " + " id_backend integer, " + "is_read integer );"+
+            "insert into DELEGACION (nombre,descripcion,direccion,id_backend,is_read) values('NOMBRE','DESCRIPCION-SQL','direccion',0,0);";
 
 
     /**

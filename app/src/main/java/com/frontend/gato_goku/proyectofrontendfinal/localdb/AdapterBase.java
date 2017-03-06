@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +12,13 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.frontend.gato_goku.proyectofrontendfinal.R;
 import com.frontend.gato_goku.proyectofrontendfinal.models.Delegacion;
 
 import java.util.ArrayList;
-
-
 public class AdapterBase extends BaseAdapter {
 
     protected Activity activity;
@@ -33,8 +28,6 @@ public class AdapterBase extends BaseAdapter {
         super();
         this.activity = activity;
         this.clases = clases;
-
-
     }
 
     @Override
@@ -70,10 +63,10 @@ public class AdapterBase extends BaseAdapter {
            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.list_item, null);
             Delegacion clase = clases.get(i);
-            TextView name = (TextView) v.findViewById(R.id.textViewNombre);
+            TextView name = (TextView) v.findViewById(R.id.textViewNom);
           name.setText(clase.getNombre());
             TextView details = (TextView) v.findViewById(R.id.textViewDescripcion);
-            details.setText(clase.getDescription());
+            details.setText(clase.getDescripcion());
            // ImageView picture = (ImageView) v.findViewById(R.id.imageViewIcon);
            //picture.setImageResource(clase.getImagen());
         }
@@ -89,8 +82,8 @@ public class AdapterBase extends BaseAdapter {
         // que apunta a los datos
         DbAdapter db = new DbAdapter(activity);
       db.open();
-      db.insertarTarea(new Delegacion(3,"NOMRE","DESCRIPTION","DIRECION"));
-        Cursor cursor = db.obtenerTareas();
+     // db.insertarDelegacion(new Delegacion(3,"NOMRE","DESCRIPTION","DIRECION"));
+        Cursor cursor = db.obtenerDelegaciones();
         // que apunta a los datos
 
 
@@ -103,7 +96,7 @@ public class AdapterBase extends BaseAdapter {
 
 
 
-        int[] dondeMostrarCampos = new int[] {R.id.textViewId, R.id.textViewNombre,R.id.textViewDescripcion };
+        int[] dondeMostrarCampos = new int[] {R.id.textViewId, R.id.textViewNom,R.id.textViewDescripcion };
 
         // Crea un adaptador para poder mostrar los datos en el ListView.
         //SimpleAdapter tareas = new SimpleAdapter(activity,null,R.id.textViewId,campos,dondeMostrarCampos);

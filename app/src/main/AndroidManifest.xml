@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.frontend.gato_goku.proyectofrontendfinal">
 
+    <appwidget-provider android:widgetCategory="keyguard|home_screen"></appwidget-provider>
+    <!-- For the SyncAdapter -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,18 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".NewActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
-
-
 
         <provider
             android:name=".localdb.DatabaseContentProvider"
@@ -38,55 +41,37 @@
             android:exported="true">
             <uses-permission
                 android:name="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.todo.READ"
+                android:permission="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.READ_WRITE"
                 android:readPermission="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.READ"
-                android:writePermission="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.WRITE"
-                android:permission="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.READ_WRITE">
-
-                ></uses-permission>
-
+                android:writePermission="com.frontend.gato_goku.proyectofrontendfinal.sqlprovider.WRITE">
+                >
+            </uses-permission>
         </provider>
 
         <service
-            android:name="com.frontend.gato_goku.proyectofrontendfinal.DummyAuthenticationService"
-            android:exported="true" >
+            android:name=".authentication.DummyAuthenticationService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/accountauth" />
         </service>
-
         <service
-            android:name="com.frontend.gato_goku.proyectofrontendfinal.TodoSyncService"
+            android:name=".syncadapter.SyncService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
+
             <meta-data
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
 
-
-
+        <activity android:name=".DetailActivity"></activity>
     </application>
-
-
-
-    <appwidget-provider
-        android:widgetCategory="keyguard|home_screen"
-        >
-
-    </appwidget-provider>
-    <!-- For the SyncAdapter -->
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
-
-
-
-
 
 </manifest>
